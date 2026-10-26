@@ -15,7 +15,7 @@ html{scroll-behavior:smooth}
 body{background:var(--sage);font-family:"Space Grotesk",system-ui,sans-serif;color:var(--ink);padding:16px;font-weight:400}
 a{color:inherit}
 .skip{position:absolute;left:-999px}.skip:focus{left:16px;top:8px;background:#fff;padding:8px;z-index:9}
-.shell{background:#fff;border-radius:26px;margin:0 auto;overflow:hidden}
+.shell{background:#fff;border-radius:26px;margin:0 auto;overflow:clip}
 .wrap{max-width:1112px;margin:0 auto;padding:0 24px}
 nav{display:flex;align-items:center;justify-content:space-between;padding:20px 42px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:10}
 .logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;text-decoration:none}
@@ -78,24 +78,20 @@ details{border-bottom:1px solid var(--line);padding:20px 0}
 summary{cursor:pointer;font-size:20px;font-weight:700;line-height:1.3;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}summary::-webkit-details-marker{display:none}
 summary:after{content:"+"}details[open] summary:after{content:"–"}
 details p{margin-top:12px;color:var(--mute);font-size:14px}
-.todo{color:#a8aaa2;font-style:italic}
 form{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px}
 form .f{grid-column:1/-1}
-label{font-size:11px;font-weight:500;display:grid;gap:6px;color:#444}
-input,select,textarea{font:400 12px "Space Grotesk",sans-serif;padding:12px 13px;border:1px solid #dcddd7;border-radius:8px;background:#fff;width:100%;color:var(--ink)}
+label{font-size:14px;font-weight:500;display:grid;gap:6px;color:#444}
+input,select,textarea{font:400 14px "Space Grotesk",sans-serif;padding:12px 13px;border:1px solid #dcddd7;border-radius:8px;background:#fff;width:100%;color:var(--ink)}
 textarea{min-height:110px;resize:vertical}
-.err{color:#b3261e;font-size:11px;display:none;font-weight:400}
+.err{color:#b3261e;font-size:14px;display:none;font-weight:400}
 .fine{font-size:14px;color:var(--mute);line-height:1.5}
-.note{background:var(--cream);border-radius:12px;padding:14px;margin-top:14px;font-size:13px;display:none}
-.foot{background:var(--ink);color:#d5d6cf;border-radius:22px;margin:0 16px 16px;padding:56px 54px 26px;display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:30px;font-size:12px}
+.note{background:var(--cream);border-radius:12px;padding:14px;margin-top:14px;font-size:14px;display:none}
+.foot{background:var(--ink);color:#d5d6cf;border-radius:22px;margin:0 16px 16px;padding:56px 54px 26px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;font-size:14px}
 .foot .lab{color:#9a9c94}
 .foot h5{font:800 34px/1 Archivo;letter-spacing:-.04em;color:#fff;margin-bottom:14px}
 .foot p{color:#a5a69f;line-height:1.5;max-width:270px}
-.foot b{display:block;color:#fff;font-weight:500;margin-bottom:12px}
+.foot b{display:block;color:#fff;font-weight:500;font-size:18px;margin-bottom:12px}
 .foot a{display:block;margin:7px 0;text-decoration:none;color:#a5a69f}
-.sub2{display:flex;gap:8px;margin-top:8px;max-width:330px}
-.sub2 input{background:#2a2c27;border-color:#3a3c37;color:#fff;border-radius:999px;padding:10px 14px}
-.sub2 button{background:var(--sage);color:var(--ink);border:0;border-radius:999px;padding:0 16px;font:500 12px "Space Grotesk";cursor:pointer}
 .bot{grid-column:1/-1;border-top:1px solid #34362f;padding-top:18px;margin-top:20px;display:flex;justify-content:space-between;color:#8b8d85}
 @media(max-width:900px){
  body{padding:10px}nav{padding:14px 18px}.burger{display:block}
@@ -211,13 +207,9 @@ textarea{min-height:110px;resize:vertical}
   <p class="lab">Have an idea?</p>
   <h5>Let's make it matter.</h5>
   <p>Video editor for independent clients. Edits, AI visuals and motion graphics, made to be watched.</p>
-  <p style="margin-top:22px;color:#fff;font-size:11px">The studio note, once a month</p>
-  <form class="sub2" id="news" novalidate><input type="email" placeholder="you@example.com" aria-label="Email"><button type="submit">Subscribe</button></form>
-  <p style="font-size:10px;margin-top:8px" id="newsn">Interface details and one project story. No spam.</p>
  </div>
  <div><b>Pages</b><a href="#about">About</a><a href="#services">Services</a><a href="#testimonials">Testimonials</a><a href="#faq">FAQ</a></div>
  <div><b>Services</b><a href="#services">Text to Video</a><a href="#services">AI Avatar to Video</a><a href="#services">UGC videos</a><a href="#services">Faceless reels</a></div>
- <div><b>Contact</b><a class="todo">[your email]</a><a class="todo">[your phone]</a><a class="todo">[your location]</a></div>
  <div class="bot"><span>© 2026 Stephen Abarca &nbsp; Independent video editing, thoughtfully done.</span><a href="#top" style="margin:0">Back to top</a></div>
 </footer>
 </div>
@@ -247,7 +239,7 @@ if(!ok)return;var n=$("#note");n.style.display="block";
 if(!EMAIL){n.textContent="The form is not connected yet. Once an email is set in the page settings, this opens a pre-filled email.";return}
 var b="Name: "+f.elements["name"].value+"\nEmail: "+f.elements["email"].value+"\nOrganization: "+f.elements["co"].value+"\nService: "+f.elements["svc"].value+"\nBudget: "+f.elements["budget"].value+"\nTimeline: "+f.elements["time"].value+"\n\n"+f.elements["msg"].value;
 location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("New project brief")+"&body="+encodeURIComponent(b);n.textContent="Brief ready in your mail app. Press send there to finish."};
-$("#news").onsubmit=function(e){e.preventDefault();$("#newsn").textContent="Newsletter signup is not connected yet."};
+
 </script>
 </body>
 </html>
