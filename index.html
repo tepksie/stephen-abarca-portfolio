@@ -235,6 +235,9 @@ body.lock{overflow:hidden}
  <div class="grid" id="owG"></div>
 </div></div>
 <script>
+if("scrollRestoration" in history)history.scrollRestoration="manual";
+if(location.hash&&location.hash!=="#works")history.replaceState(null,"",location.pathname+location.search);
+window.addEventListener("load",function(){window.scrollTo({top:0,left:0,behavior:"instant"})});
 // ---- EDIT THESE ----
 var EMAIL="abarcastephenvincent@gmail.com";   // briefs are sent here via FormSubmit (subject starts with [Video Inquiry] for the Gmail filter)
 // --------------------
