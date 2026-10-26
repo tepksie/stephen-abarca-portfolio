@@ -229,7 +229,7 @@ body.lock{overflow:hidden}
 </div></div>
 <script>
 // ---- EDIT THESE ----
-var EMAIL="";   // your email: the brief form opens a pre-filled email to this address
+var EMAIL="abarcastephenvincent@gmail.com";   // briefs are sent here via FormSubmit (subject starts with [Video Inquiry] for the Gmail filter)
 // --------------------
 var IC=['<svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>','<svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.5 18c1.5-3 9.500-3 11 0"/></svg>','<svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="2.500" width="10" height="19" rx="2"/><path d="M11 18.500h2"/></svg>','<svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M8 3l3 3M14 3l3 3"/></svg>'];
 var SVC=[["Text to Video","Turn a script or idea into a finished video. All visuals, B-roll, voiceover, captions and motion graphics, edited to fit your brand."],["AI Avatar to Video","A realistic AI presenter delivers your script on screen. Good for explainer, training, videos, ads, with no filming needed. Includes voice, captions and cutaways."],["UGC videos","Authentic, creator-style videos made for ads and social. Hook-first scripting, product B-roll and voice-over tailored for TikTok, Reels and Shorts."],["Faceless reels","Short-form videos with no camera-on talent. Story and AI B-roll, voiceover, text animation and sound design, built for steady posting."]];
@@ -250,9 +250,12 @@ $("#brief").onsubmit=function(e){e.preventDefault();var f=this,ok=true;
 function bad(n,c){var el=f.elements[n],er=el.parentNode.querySelector(".err");if(er)er.style.display=c?"block":"none";if(c)ok=false}
 bad("name",!f.elements["name"].value.trim());bad("email",!/^\S+@\S+\.\S+$/.test(f.elements["email"].value));bad("svc",!f.elements["svc"].value);bad("msg",f.elements["msg"].value.trim().length<30);
 if(!ok)return;var n=$("#note");n.style.display="block";
-if(!EMAIL){n.textContent="The form is not connected yet. Once an email is set in the page settings, this opens a pre-filled email.";return}
-var b="Name: "+f.elements["name"].value+"\nEmail: "+f.elements["email"].value+"\nOrganization: "+f.elements["co"].value+"\nService: "+f.elements["svc"].value+"\nBudget: "+f.elements["budget"].value+"\nTimeline: "+f.elements["time"].value+"\n\n"+f.elements["msg"].value;
-location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("New project brief")+"&body="+encodeURIComponent(b);n.textContent="Brief ready in your mail app. Press send there to finish."};
+var v=function(k){return f.elements[k].value.trim()},btn=f.querySelector("button");btn.disabled=true;n.textContent="Sending…";
+fetch("https://formsubmit.co/ajax/"+EMAIL,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"[Video Inquiry] "+v("svc")+" from "+v("name"),_replyto:v("email"),_template:"table",_captcha:"false",Name:v("name"),Email:v("email"),Organization:v("co"),Service:v("svc"),Budget:v("budget"),Timeline:v("time"),Project:v("msg")})})
+.then(function(r){return r.json().then(function(d){if(!r.ok||d.success===false||d.success==="false")throw 0})})
+.then(function(){f.reset();n.textContent="Thanks! Your brief was sent. I'll reply by email soon."})
+.catch(function(){n.textContent="Sorry, it didn't send. Please email me at "+EMAIL+"."})
+.then(function(){btn.disabled=false})};
 
 // ---- OTHER WORKS: add video paths here (empty "" = placeholder slot) ----
 var OW=["","","","","",""];
