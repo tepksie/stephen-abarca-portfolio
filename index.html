@@ -35,7 +35,7 @@ h1{font-family:Archivo,sans-serif;font-weight:900;font-size:64px;line-height:.98
 .tag{margin:22px 0 24px;font-size:14px;line-height:1.45;max-width:220px;color:#3a3c37}
 .photo{background:var(--cream);border-radius:24px;padding:8px 8px 12px;box-shadow:0 14px 34px rgba(0,0,0,.1);text-align:center;font-size:12px}
 .ph{aspect-ratio:3/4;border-radius:18px;background:linear-gradient(160deg,#b9bcae,#8c9080);overflow:hidden;margin-bottom:12px}
-.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .pic{width:100%;height:100%;background:center/cover no-repeat}
 .photo span:before{content:"•";margin-right:6px;color:#888}
 .side{font-size:14px;line-height:1.5;color:#3a3c37}
 .side h2{font-family:Archivo,sans-serif;font-weight:800;font-size:20px;line-height:1.2;margin-top:26px;color:var(--ink);letter-spacing:-.01em}
@@ -55,7 +55,7 @@ h3{font-family:Archivo,sans-serif;font-weight:800;font-size:clamp(26px,3vw,40px)
 .row.alt .t{text-align:right}
 .row .ic{flex:none;width:44px;height:44px;border-radius:50%;background:#d3d9df;color:#2a2d33;display:grid;place-items:center}
 .row .ic svg{width:22px;height:22px}
-.tools{width:100%;height:auto;display:block;align-self:center}
+.tools{width:100%;height:auto;aspect-ratio:1008/543;display:block;align-self:center;background:center/contain no-repeat}
 .work{background:var(--ink);color:#fff;border-radius:24px;padding:64px 58px;position:relative;overflow:hidden}
 .work:after{content:"";position:absolute;right:-90px;top:-120px;width:420px;height:420px;border-radius:50%;border:70px solid rgba(255,255,255,.05);pointer-events:none}
 .work .lab{color:#b9bab3}
@@ -120,6 +120,12 @@ body.lock{overflow:hidden}
  .row,.row.alt{flex-direction:column;align-items:flex-start}.row.alt .t{text-align:left}.row.alt .ic{order:-1}.row.alt .img{order:1}.row .img{width:100%;height:190px}.row .vid{width:min(220px,100%);height:auto}
  h1{font-size:48px}.work{padding:40px 24px}.thumb{width:100%}.stats{flex-basis:100%;grid-template-columns:1fr;gap:18px}.foot{grid-template-columns:1fr;padding:40px 24px 22px}form{grid-template-columns:1fr}form .f{text-align:center}.ow{padding:10px}.ow .box{padding:24px 18px;max-height:calc(100vh - 20px)}.ow .grid{grid-template-columns:1fr;gap:20px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+/* media guard: no select, drag, long-press save, or right-click on media */
+img,video,.pic,.tools,.cell,.row .vid{-webkit-user-select:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
+.pic,.tools,.vwrap{position:relative}
+.pic:after,.tools:after,.vwrap:after{content:"";position:absolute;inset:0;background:transparent;z-index:1}
+.row .img.vwrap{display:block;width:152px;height:auto;background:none;flex:none;border-radius:8px;overflow:hidden}.row .vwrap .vid{width:100%}
+@media(max-width:900px){.row .img.vwrap{width:min(220px,100%)}}
 </style>
 </head>
 <body>
@@ -140,7 +146,7 @@ body.lock{overflow:hidden}
    <p class="tag">New ideas. Timeless edits. Videos, motion graphics and B-roll for independent teams.</p>
    <a class="pill soft" href="#contact">Start a project <b>↗︎</b></a>
   </div>
-  <div class="photo"><div class="ph"><img src="photo.jpg" alt="Stephen Abarca" onerror="this.remove()"></div><span>Available for new projects</span></div>
+  <div class="photo"><div class="ph"><div class="pic" role="img" aria-label="Stephen Abarca"></div></div><span>Available for new projects</span></div>
   <div class="side">
    <p>Video Editor since 2022<br>Short-form, ads and motion graphics</p>
    <h2>FREELANCE</h2><h2 class="g">VIDEO EDITOR</h2>
@@ -164,7 +170,7 @@ body.lock{overflow:hidden}
   <h3 style="margin-bottom:22px">I love working with founders and small teams. Bring the half-formed idea.</h3>
   <a class="pill" href="#contact">Start a project <b>↗︎</b></a>
  </div>
- <img class="tools" src="assets/tools-logos.webp" width="1008" height="543" alt="Tools I use: Adobe Premiere Pro, CapCut, Claude, HeyGen, ChatGPT, Adobe After Effects" loading="lazy">
+ <div class="tools" role="img" aria-label="Tools I use: Adobe Premiere Pro, CapCut, Claude, HeyGen, ChatGPT, Adobe After Effects"></div>
 </div></section>
 
 <section id="work"><div class="wrap">
@@ -246,10 +252,16 @@ var SVC=[["Text to Video","Turn a script or idea into a finished video. All visu
 var FAQ=[["What does a project include?","Every project covers the full edit: cutting, pacing, B-roll, captions, motion graphics and sound. I can add AI visuals, avatars or a voiceover if you need them. You get final files ready to post in the formats you need, plus a feedback round to fine-tune."],["Can we work together remotely?","Yes, all my work is remote. You share your script, footage or idea through Google Drive or a similar link, and we keep in touch over email or chat. You review drafts online and leave notes, with no meetings needed unless you want one."],["How soon can we start?","Usually within a few days of getting your brief. Short-form videos and reels move fast, and longer or AI-heavy projects take a bit more time. Send your idea and I\u2019ll reply with a timeline that fits your launch date."],["Do you work with my raw footage?","Yes. Send clips, screen recordings or phone footage and I\u2019ll cut, color and caption them. No footage? I can build the video from AI visuals and B-roll."]];
 var TQ=[["Stephen did a really good job with our Datarahshop website. It looks clean, runs smoothly, and makes our clothes and other products look so much better. He was easy to work with, understood what we wanted, and made the whole process hassle-free. We\u2019re happy with how it turned out and would definitely recommend working with him!","Tanch and Sarah","Shop Owner"],["Stephen has been a great help with my posting schedule and video edits, giving me more time to focus on coaching. He\u2019s reliable, easy to work with, and always delivers on time. Really glad I can count on him!","Julian Ca\u00f1ita","Facebook Ads Coach"],["I\u2019ve worked with Stephen on videos for different clients, and he\u2019s been great to work with. He quickly understands the style each client is looking for and always delivers on time. It\u2019s been great having someone I can rely on!","Mhyla Uy","Content Multiplied"],["Stephen does a great job editing my podcast. The audio is clean, the cuts are smooth, and the social media clips are ready to go. He makes the whole process easy and delivers episodes that are ready to publish.","Erik Van Horn","Franchise Secrets Podcast"],["Working with Stephen has been a great experience. He turned our raw footage into podcasts, short videos, and reels that look polished and engaging. I also love how he uses AI video editing to bring our content to life. He\u2019s creative, quick with revisions, and really easy to work with. Happy to have him on our team!","Bennett Maxwell","FranchiseKi"]];
 var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
-var VID=["assets/text-to-video.mp4?v=2","assets/ai-avatar.mp4","assets/ugc.mp4","assets/faceless-reels.mp4"];
-$("#svc").innerHTML=SVC.map(function(s,i){return'<div class="row'+(i%2?" alt":"")+'"><div class="ic">'+IC[i]+'</div><div class="t"><h4>'+s[0]+'</h4><p>'+s[1]+'</p></div>'+'<video class="img vid" src="'+VID[i]+'" autoplay muted loop playsinline disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true" preload="auto"></video>'+'</div>'}).join("");
+// media paths are encoded so they don't show in view-source; service clips load as blob: URLs
+var _d=function(x){return atob(x.split("").reverse().join(""))};
+var VID=["==gM9Y3P0AXbu8WZklmdt8GdtQHelR3LzRXZzNXY","=QDct5ichRXY2FWLpF2LzRXZzNXY","=QDct5yYnV3LzRXZzNXY","==ANw1mLzxWZlJXLzNXZsV2YhZ2LzRXZzNXY"].map(_d);
+var WK=_d("==wLztmcvd3LzRXZzNXY");
+function blobSrc(v,u){fetch(u).then(function(r){if(!r.ok)throw 0;return r.blob()}).then(function(b){v.src=URL.createObjectURL(b)}).catch(function(){v.src=u})}
+function bg(el,u){if(!el)return;var i=new Image();i.onload=function(){el.style.backgroundImage='url("'+u+'")'};i.src=u}
+bg($(".ph .pic"),_d("nBnau8GdvhGc"));bg($(".tools"),_d("=AnYldnLz92ZvxWLzx2bvR3LzRXZzNXY"));
+$("#svc").innerHTML=SVC.map(function(s,i){return'<div class="row'+(i%2?" alt":"")+'"><div class="ic">'+IC[i]+'</div><div class="t"><h4>'+s[0]+'</h4><p>'+s[1]+'</p></div>'+'<span class="img vwrap"><video class="vid" autoplay muted loop playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noremoteplayback nofullscreen" tabindex="-1" aria-hidden="true" preload="auto"></video></span>'+'</div>'}).join("");
 $$("#svc .row").forEach(function(r,i){if(i%2){r.insertBefore($(".img",r),r.firstChild);r.appendChild($(".ic",r))}});
-$$("video.vid").forEach(function(v){v.muted=true;v.controls=false;var p=function(){var r=v.play();if(r&&r.catch)r.catch(function(){})};p();v.addEventListener("pause",function(){if(!v.ended)p()});v.addEventListener("click",function(e){e.preventDefault()})});
+$$("video.vid").forEach(function(v,i){blobSrc(v,VID[i]);v.muted=true;v.controls=false;var p=function(){var r=v.play();if(r&&r.catch)r.catch(function(){})};p();v.addEventListener("pause",function(){if(!v.ended)p()});v.addEventListener("click",function(e){e.preventDefault()})});
 $("#faqs").innerHTML=FAQ.map(function(f){return'<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'}).join("");
 var ti=0;function showT(){var t=TQ[ti];$("#tq").textContent=t[0];$("#tn").textContent=t[1];$("#tr").textContent=t[2];$("#ti").textContent=t[1].charAt(0);$("#cnt").textContent="0"+(ti+1)+" / 0"+TQ.length}
 showT();
@@ -267,12 +279,12 @@ fetch("https://formsubmit.co/ajax/"+EMAIL,{method:"POST",headers:{"Content-Type"
 .catch(function(){n.textContent="Sorry, it didn't send. Please email me at "+EMAIL+"."})
 .then(function(){btn.disabled=false})};
 
-// ---- OTHER WORKS: [label, file name in assets/works/ (.mp4 + .jpg poster)] ----
-var OW=[["Long-form YouTube","longform-yt"],["AI explainer video","ai-explainer"],["IG reel","ig-reel"],["Intro video","intro-broker"],["360 tour","360-salad-house"],["Ad","ad-salad-house"],["Live interview","live-qa"],["AI viral trend","ai-viral-trend"]];
-$("#owG").innerHTML=OW.map(function(w){return'<figure><div class="cell"><video src="assets/works/'+w[1]+'.mp4" poster="assets/works/'+w[1]+'.jpg" preload="none" playsinline></video><button class="play" aria-label="Play '+w[0]+'"><i></i></button></div><figcaption>'+w[0]+'</figcaption></figure>'}).join("");
+// ---- OTHER WORKS: [label, encoded file stem (use _d-compatible encoding: base64, reversed)] ----
+var OW=[["Long-form YouTube","=QXet0mcvZ2Zu9Gb"],["AI explainer video","yVmbpFGbwhXZtkWY"],["IG reel","==AblVmctcWa"],["Intro video","yV2avJnYt8mc05Wa"],["360 tour","lNXdvhWLkFGbhNXLwYzM"],["Ad","=U2c19GatQWYsF2ctQWY"],["Live interview","==QYx1SZ2lGb"],["AI viral trend","=QmblJHdtwWYylmdtkWY"]].map(function(w){return[w[0],_d(w[1])]});
+$("#owG").innerHTML=OW.map(function(w){return'<figure><div class="cell"><video preload="none" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noremoteplayback"></video><button class="play" aria-label="Play '+w[0]+'"><i></i></button></div><figcaption>'+w[0]+'</figcaption></figure>'}).join("");
 function owStop(keep){$$("#owG video").forEach(function(v){if(v!==keep&&!v.paused)v.pause()})}
-$$("#owG .cell").forEach(function(c){var v=$("video",c);
-$(".play",c).onclick=function(){c.classList.add("on");v.controls=true;var r=v.play();if(r&&r.catch)r.catch(function(){})};
+$$("#owG .cell").forEach(function(c,i){var v=$("video",c);v.poster=WK+OW[i][1]+_d("==wZwpmL");
+$(".play",c).onclick=function(){if(!v.src)v.src=WK+OW[i][1]+_d("==ANw1mL");c.classList.add("on");v.controls=true;var r=v.play();if(r&&r.catch)r.catch(function(){})};
 v.addEventListener("play",function(){owStop(v)})});
 var owLast;function owShow(o){var m=$("#ow");m.classList.toggle("open",o);document.body.classList.toggle("lock",o);
 if(!o)owStop();
@@ -282,6 +294,12 @@ $("#owX").onclick=function(){owShow(false)};
 $("#ow").onclick=function(e){if(e.target===this)owShow(false)};
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&$("#ow").classList.contains("open"))owShow(false)});
 if(location.hash==="#works")owShow(true);
+// ---- media guard: block right-click, drag, save/view-source shortcuts ----
+var _form=function(t){return t&&t.closest&&t.closest("input,textarea,select,[contenteditable]")};
+document.addEventListener("contextmenu",function(e){if(!_form(e.target))e.preventDefault()});
+document.addEventListener("dragstart",function(e){if(e.target.closest&&e.target.closest("img,video,.pic,.tools,.cell,.vwrap"))e.preventDefault()});
+document.addEventListener("keydown",function(e){var k=(e.key||"").toLowerCase(),m=e.ctrlKey||e.metaKey;
+if(k==="f12"||(m&&(k==="s"||k==="u"))||(m&&e.shiftKey&&(k==="i"||k==="j"||k==="c"))||(e.metaKey&&e.altKey&&(k==="i"||k==="j"||k==="u"))){e.preventDefault()}});
 </script>
 </body>
 </html>
