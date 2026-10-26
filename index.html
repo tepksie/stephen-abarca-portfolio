@@ -57,7 +57,7 @@ h3{font-family:Archivo,sans-serif;font-weight:800;font-size:clamp(26px,3vw,40px)
 .row .ic svg{width:22px;height:22px}
 .tools{width:100%;height:auto;display:block;align-self:center}
 .work{background:var(--ink);color:#fff;border-radius:24px;padding:64px 58px;position:relative;overflow:hidden}
-.work:after{content:"";position:absolute;right:-90px;top:-120px;width:420px;height:420px;border-radius:50%;border:70px solid rgba(255,255,255,.05)}
+.work:after{content:"";position:absolute;right:-90px;top:-120px;width:420px;height:420px;border-radius:50%;border:70px solid rgba(255,255,255,.05);pointer-events:none}
 .work .lab{color:#b9bab3}
 .work h3{max-width:640px;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em}
 .wrow{display:flex;gap:34px;align-items:center;margin-top:60px;flex-wrap:wrap}
@@ -93,6 +93,16 @@ textarea{min-height:110px;resize:vertical}
 .foot b{display:block;color:#fff;font-weight:500;font-size:18px;margin-bottom:12px}
 .foot a{display:block;margin:7px 0;text-decoration:none;color:#a5a69f}
 .bot{grid-column:1/-1;border-top:1px solid #34362f;padding-top:18px;margin-top:20px;display:flex;justify-content:space-between;color:#8b8d85}
+.ow{position:fixed;inset:0;z-index:50;background:rgba(27,29,25,.72);display:none;align-items:center;justify-content:center;padding:24px}
+.ow.open{display:flex}
+.ow .box{background:#fff;border-radius:24px;width:min(1040px,100%);max-height:calc(100vh - 48px);overflow:auto;padding:40px 42px;position:relative}
+.ow .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:28px}
+.ow .hd h3{max-width:none}
+.ow .x{width:40px;height:40px;flex:none;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center}
+.ow .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+.ow .cell{aspect-ratio:9/16;border-radius:12px;background:var(--ph);overflow:hidden;display:grid;place-items:center;font-size:12px;color:#6f7b88}
+.ow .cell video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+body.lock{overflow:hidden}
 @media(max-width:900px){
  body{padding:10px}nav{padding:14px 18px}.burger{display:block}
  .links{display:none;position:absolute;top:100%;left:12px;right:12px;flex-direction:column;border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.15)}.links.open{display:flex}
@@ -100,7 +110,7 @@ textarea{min-height:110px;resize:vertical}
  .hero{grid-template-columns:1fr;gap:30px;padding:48px 0 60px}.photo{max-width:320px}
  section{padding:64px 0}.two{grid-template-columns:1fr;gap:28px}
  .row,.row.alt{flex-direction:column;align-items:flex-start}.row.alt .t{text-align:left}.row .img{width:100%;height:190px}.row .vid{width:min(220px,100%);height:auto}
- h1{font-size:48px}.work{padding:40px 24px}.thumb{width:100%}.stats{flex-basis:100%;grid-template-columns:1fr;gap:18px}.foot{grid-template-columns:1fr;padding:40px 24px 22px}form{grid-template-columns:1fr}}
+ h1{font-size:48px}.work{padding:40px 24px}.thumb{width:100%}.stats{flex-basis:100%;grid-template-columns:1fr;gap:18px}.foot{grid-template-columns:1fr;padding:40px 24px 22px}form{grid-template-columns:1fr}.ow{padding:10px}.ow .box{padding:24px 18px;max-height:calc(100vh - 20px)}.ow .grid{grid-template-columns:repeat(2,1fr);gap:10px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
@@ -155,7 +165,7 @@ textarea{min-height:110px;resize:vertical}
   <p class="lab">03 / The work</p>
   <h3>I help independent clients ship work that feels considered, from the first draft to the final output.</h3>
   <div class="wrow">
-   <div class="thumb"><a href="#contact"><span>check other works</span><span>↗</span></a></div>
+   <div class="thumb"><a href="#works" id="owOpen"><span>check other works</span><span>↗</span></a></div>
    <div class="stats">
     <div class="st"><b>4</b><span>Years editing videos for independent clients</span></div>
     <div class="st"><b>100+</b><span>Videos shipped since 2022</span></div>
@@ -213,6 +223,10 @@ textarea{min-height:110px;resize:vertical}
  <div class="bot"><span>© 2026 Stephen Abarca &nbsp; Independent video editing, thoughtfully done.</span><a href="#top" style="margin:0">Back to top</a></div>
 </footer>
 </div>
+<div class="ow" id="ow" role="dialog" aria-modal="true" aria-labelledby="owT"><div class="box">
+ <div class="hd"><div><p class="lab">More samples</p><h3 id="owT">Other works</h3></div><button class="x" id="owX" aria-label="Close">✕</button></div>
+ <div class="grid" id="owG"></div>
+</div></div>
 <script>
 // ---- EDIT THESE ----
 var EMAIL="";   // your email: the brief form opens a pre-filled email to this address
@@ -240,6 +254,17 @@ if(!EMAIL){n.textContent="The form is not connected yet. Once an email is set in
 var b="Name: "+f.elements["name"].value+"\nEmail: "+f.elements["email"].value+"\nOrganization: "+f.elements["co"].value+"\nService: "+f.elements["svc"].value+"\nBudget: "+f.elements["budget"].value+"\nTimeline: "+f.elements["time"].value+"\n\n"+f.elements["msg"].value;
 location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("New project brief")+"&body="+encodeURIComponent(b);n.textContent="Brief ready in your mail app. Press send there to finish."};
 
+// ---- OTHER WORKS: add video paths here (empty "" = placeholder slot) ----
+var OW=["","","","","",""];
+$("#owG").innerHTML=OW.map(function(v,i){return'<div class="cell">'+(v?'<video data-src="'+v+'" muted loop playsinline disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true" preload="none"></video>':'Sample '+(i+1))+'</div>'}).join("");
+var owLast;function owShow(o){var m=$("#ow");m.classList.toggle("open",o);document.body.classList.toggle("lock",o);
+$$("#owG video").forEach(function(v){if(o){if(!v.src)v.src=v.dataset.src;v.muted=true;var r=v.play();if(r&&r.catch)r.catch(function(){})}else v.pause()});
+if(o){owLast=document.activeElement;$("#owX").focus()}else if(owLast)owLast.focus()}
+$("#owOpen").onclick=function(e){e.preventDefault();owShow(true)};
+$("#owX").onclick=function(){owShow(false)};
+$("#ow").onclick=function(e){if(e.target===this)owShow(false)};
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&$("#ow").classList.contains("open"))owShow(false)});
+if(location.hash==="#works")owShow(true);
 </script>
 </body>
 </html>
