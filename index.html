@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stephen Abarca | Freelance Video Editor</title>
+<meta name="description" content="Freelance video editor since 2022. Short-form, ads, AI visuals and motion graphics for independent teams.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--sage:#a3a89d;--ink:#1b1d19;--cream:#f3f4f0;--ph:#cbd3dc;--mute:#7d7f78;--line:#e9eae5;--btn:#a3a89d}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--sage);font-family:"Space Grotesk",system-ui,sans-serif;color:var(--ink);padding:16px;font-weight:400}
+a{color:inherit}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:8px;background:#fff;padding:8px;z-index:9}
+.shell{background:#fff;border-radius:26px;margin:0 auto;overflow:hidden}
+.wrap{max-width:1112px;margin:0 auto;padding:0 24px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 42px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:10}
+.logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;text-decoration:none}
+.logo i{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-style:normal;font-size:10px}
+.links{display:flex;gap:4px;background:#f2f3ee;padding:5px;border-radius:999px}
+.links a{padding:9px 16px;border-radius:999px;font-size:13px;text-decoration:none;transition:background .2s}
+.links a:hover{background:#fff}
+.pill{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;padding:11px 12px 11px 22px;border-radius:999px;font:500 14px "Space Grotesk",sans-serif;border:0;cursor:pointer;transition:transform .2s}
+.pill:hover{transform:translateY(-2px)}
+.pill b{width:24px;height:24px;border-radius:50%;background:#a3a89d;display:grid;place-items:center;color:var(--ink);font-weight:500;font-size:12px}
+.pill.soft{background:var(--btn);color:var(--ink);box-shadow:0 6px 16px rgba(0,0,0,.1)}
+.pill.soft b{background:var(--ink);color:#fff}
+.burger{display:none;background:#f2f3ee;border:0;border-radius:999px;padding:10px 16px;font:inherit;cursor:pointer}
+.hero{display:grid;grid-template-columns:1.1fr .85fr 1fr;gap:40px;align-items:center;padding:90px 0 110px}
+.hi{font-size:14px;margin-bottom:12px;color:#3a3c37}
+h1{font-family:Archivo,sans-serif;font-weight:900;font-size:64px;line-height:.98;letter-spacing:-.045em;text-transform:uppercase}
+.tag{margin:22px 0 24px;font-size:14px;line-height:1.45;max-width:220px;color:#3a3c37}
+.photo{background:var(--cream);border-radius:24px;padding:8px 8px 12px;box-shadow:0 14px 34px rgba(0,0,0,.1);text-align:center;font-size:12px}
+.ph{aspect-ratio:3/4;border-radius:18px;background:linear-gradient(160deg,#b9bcae,#8c9080);overflow:hidden;margin-bottom:12px}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.photo span:before{content:"•";margin-right:6px;color:#888}
+.side{font-size:14px;line-height:1.5;color:#3a3c37}
+.side h2{font-family:Archivo,sans-serif;font-weight:800;font-size:20px;line-height:1.2;margin-top:26px;color:var(--ink);letter-spacing:-.01em}
+.side h2.g{color:#8d8f88;margin-top:0;font-weight:500}
+.side .n{margin-top:20px;color:var(--ink)}
+section{border-top:1px solid var(--line);padding:110px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.lab{font:400 11px "Space Grotesk",monospace;letter-spacing:.04em;text-transform:uppercase;color:#55574f;margin-bottom:12px}
+h3{font-family:Archivo,sans-serif;font-weight:800;font-size:clamp(26px,3vw,40px);line-height:1.03;letter-spacing:-.04em;max-width:430px}
+.sub{color:var(--mute);font-size:13px;line-height:1.5;max-width:230px;margin-top:12px}
+.lnk{display:inline-block;margin-top:10px;font-size:11px;text-decoration:none}
+.row{display:flex;align-items:center;gap:20px;padding:34px 0;border-bottom:1px solid var(--line)}
+.row:first-child{padding-top:0}
+.row .t{flex:1}.row h4{font:800 19px Archivo;letter-spacing:-.02em;margin-bottom:8px}.row p{color:var(--mute);font-size:13px;line-height:1.5}
+.row .img{width:152px;height:245px;flex:none;background:var(--ph);border-radius:2px;display:grid;place-items:center;font-size:9px;color:#6f7b88}
+.row.alt .t{text-align:right}
+.row .ic{flex:none;width:44px;height:44px;border-radius:50%;background:#d3d9df;color:#2a2d33;display:grid;place-items:center}
+.row .ic svg{width:22px;height:22px}
+.imgs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.imgs div{aspect-ratio:1/1.05;border-radius:16px;display:grid;place-items:center;font-size:12px;color:#fff;box-shadow:0 12px 26px rgba(0,0,0,.12)}
+.imgs div:first-child{background:linear-gradient(135deg,#b88f86,#7e5b57)}.imgs div:last-child{background:linear-gradient(135deg,#6f7377,#2c2f31)}
+.work{background:var(--ink);color:#fff;border-radius:24px;padding:64px 58px;position:relative;overflow:hidden}
+.work:after{content:"";position:absolute;right:-90px;top:-120px;width:420px;height:420px;border-radius:50%;border:70px solid rgba(255,255,255,.05)}
+.work .lab{color:#b9bab3}
+.work h3{max-width:640px;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em}
+.wrow{display:flex;gap:34px;align-items:center;margin-top:60px;flex-wrap:wrap}
+.thumb{width:250px;height:150px;border-radius:12px;background:linear-gradient(135deg,#d9cfc6,#9c8f86);position:relative;flex:none}
+.thumb a{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(255,255,255,.88);color:var(--ink);border-radius:999px;padding:7px 12px;font-size:11px;text-decoration:none;display:flex;justify-content:space-between}
+.stats{flex:1;min-width:0;display:grid;grid-template-columns:repeat(3,1fr)}
+.st{border-left:1px solid #3a3c37;padding:6px 12px 6px 24px;min-width:0}
+.st b{display:block;font:900 30px/1.1 Archivo;letter-spacing:-.04em;white-space:nowrap;margin-bottom:10px}
+.st span{display:block;font-size:12px;line-height:1.5;color:#a9aaa3}
+.tcard{background:var(--cream);border-radius:20px;padding:46px 44px;min-height:290px;display:flex;flex-direction:column;justify-content:space-between}
+.tcard q{font:800 24px/1.2 Archivo;letter-spacing:-.03em;quotes:none;display:block;color:#bfc0b8}
+.tcard .who{display:flex;align-items:center;gap:10px;font-size:13px;margin-top:30px}
+.tcard .who i{width:26px;height:26px;border-radius:50%;background:#cfd2c8}
+.ctl{display:flex;gap:14px;align-items:center;margin-top:40px;font-size:11px;color:var(--mute)}
+.ctl button{background:0;border:0;font-size:18px;cursor:pointer}
+.bar{margin-top:0}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font-size:13px;list-style:none;display:flex;justify-content:space-between}
+summary:after{content:"+"}details[open] summary:after{content:"–"}
+details p{margin-top:12px;color:var(--mute);font-size:13px}
+.todo{color:#a8aaa2;font-style:italic}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px}
+form .f{grid-column:1/-1}
+label{font-size:11px;font-weight:500;display:grid;gap:6px;color:#444}
+input,select,textarea{font:400 12px "Space Grotesk",sans-serif;padding:12px 13px;border:1px solid #dcddd7;border-radius:8px;background:#fff;width:100%;color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+.err{color:#b3261e;font-size:11px;display:none;font-weight:400}
+.fine{font-size:11px;color:var(--mute);line-height:1.5}
+.note{background:var(--cream);border-radius:12px;padding:14px;margin-top:14px;font-size:13px;display:none}
+.foot{background:var(--ink);color:#d5d6cf;border-radius:22px;margin:0 16px 16px;padding:56px 54px 26px;display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:30px;font-size:12px}
+.foot .lab{color:#9a9c94}
+.foot h5{font:800 34px/1 Archivo;letter-spacing:-.04em;color:#fff;margin-bottom:14px}
+.foot p{color:#a5a69f;line-height:1.5;max-width:270px}
+.foot b{display:block;color:#fff;font-weight:500;margin-bottom:12px}
+.foot a{display:block;margin:7px 0;text-decoration:none;color:#a5a69f}
+.sub2{display:flex;gap:8px;margin-top:8px;max-width:330px}
+.sub2 input{background:#2a2c27;border-color:#3a3c37;color:#fff;border-radius:999px;padding:10px 14px}
+.sub2 button{background:var(--sage);color:var(--ink);border:0;border-radius:999px;padding:0 16px;font:500 12px "Space Grotesk";cursor:pointer}
+.bot{grid-column:1/-1;border-top:1px solid #34362f;padding-top:18px;margin-top:20px;display:flex;justify-content:space-between;color:#8b8d85}
+@media(max-width:900px){
+ body{padding:10px}nav{padding:14px 18px}.burger{display:block}
+ .links{display:none;position:absolute;top:100%;left:12px;right:12px;flex-direction:column;border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.15)}.links.open{display:flex}
+ nav>.pill{display:none}
+ .hero{grid-template-columns:1fr;gap:30px;padding:48px 0 60px}.photo{max-width:320px}
+ section{padding:64px 0}.two{grid-template-columns:1fr;gap:28px}
+ .row,.row.alt{flex-direction:column;align-items:flex-start}.row.alt .t{text-align:left}.row .img{width:100%;height:190px}
+ h1{font-size:48px}.work{padding:40px 24px}.thumb{width:100%}.stats{flex-basis:100%;grid-template-columns:1fr;gap:18px}.foot{grid-template-columns:1fr;padding:40px 24px 22px}form{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<nav>
+ <a class="logo" href="#top"><i>S</i>Stephen Abarca</a>
+ <div class="links" id="links"><a href="#services">Services</a><a href="#about">About</a><a href="#testimonials">Testimonials</a><a href="#faq">FAQ</a></div>
+ <a class="pill" href="#contact">Start a project <b>↗</b></a>
+ <button class="burger" id="burger" aria-label="Menu">Menu</button>
+</nav>
+<main id="main">
+<div class="wrap" id="top">
+ <header class="hero">
+  <div>
+   <p class="hi">Hey there, I'm</p>
+   <h1>Stephen<br>Abarca</h1>
+   <p class="tag">New ideas. Timeless edits. Videos, motion graphics and B-roll for independent teams.</p>
+   <a class="pill soft" href="#contact">Start a project <b>↗</b></a>
+  </div>
+  <div class="photo"><div class="ph"><img src="photo.jpg" alt="Stephen Abarca" onerror="this.remove()"></div><span>Available for new projects</span></div>
+  <div class="side">
+   <p>Video Editor since 2022<br>Short-form, ads and motion graphics</p>
+   <h2>FREELANCE</h2><h2 class="g">VIDEO EDITOR</h2>
+   <p class="n"><b>100+</b> videos delivered</p>
+  </div>
+ </header>
+</div>
+
+<section id="services"><div class="wrap two">
+ <div>
+  <p class="lab">01 / Services</p>
+  <h3>Four ways to work together. Each one clearly scoped.</h3>
+  <p class="sub">Fixed price, a written brief and a review every Friday. You always know what happens next week.</p>
+  <a class="lnk" href="#contact">Compare all services ↗</a>
+ </div>
+ <div id="svc"></div>
+</div></section>
+
+<section id="about"><div class="wrap two">
+ <div>
+  <p class="lab">02 / About &amp; process</p>
+  <h3 style="margin-bottom:22px">I love working with founders and small teams. Bring the half-formed idea.</h3>
+  <a class="pill" href="#contact">Start a project <b>↗</b></a>
+ </div>
+ <div class="imgs"><div>photo</div><div>photo</div></div>
+</div></section>
+
+<section id="work"><div class="wrap">
+ <div class="work">
+  <p class="lab">03 / The work</p>
+  <h3>I help independent clients ship work that feels considered, from the first draft to the final output.</h3>
+  <div class="wrow">
+   <div class="thumb"><a href="#contact"><span>check other works</span><span>↗</span></a></div>
+   <div class="stats">
+    <div class="st"><b>4</b><span>Years editing videos for independent clients</span></div>
+    <div class="st"><b>100+</b><span>Videos shipped since 2022</span></div>
+    <div class="st"><b>9:16 + 16:9</b><span>Formats delivered for every platform</span></div>
+   </div>
+  </div>
+ </div>
+</div></section>
+
+<section id="testimonials"><div class="wrap two">
+ <div>
+  <p class="lab">04 / Testimonials</p>
+  <h3>What clients say after launch.</h3>
+  <p class="sub todo">[Add a rating or client note]</p>
+  <div class="ctl"><button id="prev" aria-label="Previous">←</button><button id="next" aria-label="Next">→</button><span id="cnt">01 / 03</span></div>
+ </div>
+ <div class="tcard"><q>“</q><p style="font:800 22px/1.2 Archivo;letter-spacing:-.03em" class="todo" id="tq">[Client quote goes here]</p><div class="who"><i></i><div><span class="todo">[Client name]</span><br><span class="todo">[Role, company]</span></div></div></div>
+</div></section>
+
+<section id="faq"><div class="wrap two">
+ <div><p class="lab">05 / FAQ</p><h3>A few good questions.</h3></div>
+ <div id="faqs"></div>
+</div></section>
+
+<section id="contact"><div class="wrap two">
+ <div>
+  <p class="lab">06 / Brief &amp; contact</p>
+  <h3>Tell me what you're making.</h3>
+  <p class="sub" style="max-width:260px">A few useful details are enough to start. I'll review your brief and follow up by email; submitting is not a booking confirmation.</p>
+ </div>
+ <div>
+ <form id="brief" novalidate>
+  <label>Your name *<input name="name" placeholder="Your name"><span class="err">Please add your name.</span></label>
+  <label>Email address *<input name="email" type="email" placeholder="you@example.com"><span class="err">Please add an email I can reply to.</span></label>
+  <label>Company / organization<input name="co" placeholder="Your organization"></label>
+  <label>What do you need? *<select name="svc"><option value="">Select a service</option><option>Text to Video</option><option>AI Avatar to Video</option><option>UGC videos</option><option>Faceless reels</option><option>Not sure yet</option></select><span class="err">Please pick one.</span></label>
+  <label>Estimated budget<select name="budget"><option>Prefer not to say</option><option>Under $500</option><option>$500 to $1,500</option><option>$1,500+</option></select></label>
+  <label>Ideal timeline<input name="time" placeholder="e.g. Early next year"></label>
+  <label class="f">Tell me about the project *<textarea name="msg"></textarea><span class="err">Please add a few details (at least 30 characters).</span></label>
+  <p class="fine f">Your details are used to respond to your inquiry. Please don't include sensitive personal or payment information.</p>
+  <div class="f"><button class="pill" type="submit">Start a project <b>↗</b></button></div>
+ </form>
+ <div class="note" id="note"></div>
+ </div>
+</div></section>
+</main>
+
+<footer class="foot">
+ <div>
+  <p class="lab">Have an idea?</p>
+  <h5>Let's make it matter.</h5>
+  <p>Video editor for independent clients. Edits, AI visuals and motion graphics, made to be watched.</p>
+  <p style="margin-top:22px;color:#fff;font-size:11px">The studio note, once a month</p>
+  <form class="sub2" id="news" novalidate><input type="email" placeholder="you@example.com" aria-label="Email"><button type="submit">Subscribe</button></form>
+  <p style="font-size:10px;margin-top:8px" id="newsn">Interface details and one project story. No spam.</p>
+ </div>
+ <div><b>Pages</b><a href="#about">About</a><a href="#services">Services</a><a href="#testimonials">Testimonials</a><a href="#faq">FAQ</a></div>
+ <div><b>Services</b><a href="#services">Text to Video</a><a href="#services">AI Avatar to Video</a><a href="#services">UGC videos</a><a href="#services">Faceless reels</a></div>
+ <div><b>Contact</b><a class="todo">[your email]</a><a class="todo">[your phone]</a><a class="todo">[your location]</a></div>
+ <div class="bot"><span>© 2026 Stephen Abarca &nbsp; Independent video editing, thoughtfully done.</span><a href="#top" style="margin:0">Back to top</a></div>
+</footer>
+</div>
+<script>
+// ---- EDIT THESE ----
+var EMAIL="";   // your email: the brief form opens a pre-filled email to this address
+// --------------------
+var IC=['<svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>','<svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.5 18c1.5-3 9.500-3 11 0"/></svg>','<svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="2.500" width="10" height="19" rx="2"/><path d="M11 18.500h2"/></svg>','<svg viewBox="0 0 24 24" width="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M8 3l3 3M14 3l3 3"/></svg>'];
+var SVC=[["Text to Video","Turn a script or idea into a finished video. All visuals, B-roll, voiceover, captions and motion graphics, edited to fit your brand."],["AI Avatar to Video","A realistic AI presenter delivers your script on screen. Good for explainer, training, videos, ads, with no filming needed. Includes voice, captions and cutaways."],["UGC videos","Authentic, creator-style videos made for ads and social. Hook-first scripting, product B-roll and voice-over tailored for TikTok, Reels and Shorts."],["Faceless reels","Short-form videos with no camera-on talent. Story and AI B-roll, voiceover, text animation and sound design, built for steady posting."]];
+var FAQ=["What does a project include?","Can we work together remotely?","How soon can we start?","Do you collaborate with developers?"];
+var TQ=["[Client quote 1]","[Client quote 2]","[Client quote 3]"];
+var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
+$("#svc").innerHTML=SVC.map(function(s,i){return'<div class="row'+(i%2?" alt":"")+'"><div class="ic">'+IC[i]+'</div><div class="t"><h4>'+s[0]+'</h4><p>'+s[1]+'</p></div><div class="img">placeholder</div></div>'}).join("");
+$$("#svc .row").forEach(function(r,i){if(i%2){r.insertBefore($(".img",r),r.firstChild);r.appendChild($(".ic",r))}});
+$("#faqs").innerHTML=FAQ.map(function(q){return'<details><summary>'+q+'</summary><p class="todo">[Add your answer]</p></details>'}).join("");
+var ti=0;function showT(){$("#tq").textContent=TQ[ti];$("#cnt").textContent="0"+(ti+1)+" / 0"+TQ.length}
+$("#prev").onclick=function(){ti=(ti+TQ.length-1)%TQ.length;showT()};$("#next").onclick=function(){ti=(ti+1)%TQ.length;showT()};
+$("#burger").onclick=function(){$("#links").classList.toggle("open")};
+$$("#links a").forEach(function(a){a.onclick=function(){$("#links").classList.remove("open")}});
+$("#brief").onsubmit=function(e){e.preventDefault();var f=this,ok=true;
+function bad(n,c){var el=f.elements[n],er=el.parentNode.querySelector(".err");if(er)er.style.display=c?"block":"none";if(c)ok=false}
+bad("name",!f.elements["name"].value.trim());bad("email",!/^\S+@\S+\.\S+$/.test(f.elements["email"].value));bad("svc",!f.elements["svc"].value);bad("msg",f.elements["msg"].value.trim().length<30);
+if(!ok)return;var n=$("#note");n.style.display="block";
+if(!EMAIL){n.textContent="The form is not connected yet. Once an email is set in the page settings, this opens a pre-filled email.";return}
+var b="Name: "+f.elements["name"].value+"\nEmail: "+f.elements["email"].value+"\nOrganization: "+f.elements["co"].value+"\nService: "+f.elements["svc"].value+"\nBudget: "+f.elements["budget"].value+"\nTimeline: "+f.elements["time"].value+"\n\n"+f.elements["msg"].value;
+location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("New project brief")+"&body="+encodeURIComponent(b);n.textContent="Brief ready in your mail app. Press send there to finish."};
+$("#news").onsubmit=function(e){e.preventDefault();$("#newsn").textContent="Newsletter signup is not connected yet."};
+</script>
+</body>
+</html>
