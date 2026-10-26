@@ -253,7 +253,7 @@ if(!ok)return;var n=$("#note");n.style.display="block";
 var v=function(k){return f.elements[k].value.trim()},btn=f.querySelector("button");btn.disabled=true;n.textContent="Sending…";
 fetch("https://formsubmit.co/ajax/"+EMAIL,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"[Video Inquiry] "+v("svc")+" from "+v("name"),_replyto:v("email"),_template:"table",_captcha:"false",Name:v("name"),Email:v("email"),Organization:v("co"),Service:v("svc"),Budget:v("budget"),Timeline:v("time"),Project:v("msg")})})
 .then(function(r){return r.json().then(function(d){if(!r.ok||d.success===false||d.success==="false")throw 0})})
-.then(function(){f.reset();n.textContent="Thanks! Your brief was sent. I'll reply by email soon."})
+.then(function(){f.reset();n.textContent="Thanks! Your inquiry was sent. I'll reply by email soon."})
 .catch(function(){n.textContent="Sorry, it didn't send. Please email me at "+EMAIL+"."})
 .then(function(){btn.disabled=false})};
 
