@@ -51,6 +51,7 @@ h3{font-family:Archivo,sans-serif;font-weight:800;font-size:clamp(26px,3vw,40px)
 .row:first-child{padding-top:0}
 .row .t{flex:1}.row h4{font:800 19px Archivo;letter-spacing:-.02em;margin-bottom:8px}.row p{color:var(--mute);font-size:13px;line-height:1.5}
 .row .img{width:152px;height:245px;flex:none;background:var(--ph);border-radius:2px;display:grid;place-items:center;font-size:9px;color:#6f7b88}
+.row .vid{display:block;width:152px;height:auto;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:8px;pointer-events:none;user-select:none}
 .row.alt .t{text-align:right}
 .row .ic{flex:none;width:44px;height:44px;border-radius:50%;background:#d3d9df;color:#2a2d33;display:grid;place-items:center}
 .row .ic svg{width:22px;height:22px}
@@ -104,7 +105,7 @@ textarea{min-height:110px;resize:vertical}
  nav>.pill{display:none}
  .hero{grid-template-columns:1fr;gap:30px;padding:48px 0 60px}.photo{max-width:320px}
  section{padding:64px 0}.two{grid-template-columns:1fr;gap:28px}
- .row,.row.alt{flex-direction:column;align-items:flex-start}.row.alt .t{text-align:left}.row .img{width:100%;height:190px}
+ .row,.row.alt{flex-direction:column;align-items:flex-start}.row.alt .t{text-align:left}.row .img{width:100%;height:190px}.row .vid{width:min(220px,100%);height:auto}
  h1{font-size:48px}.work{padding:40px 24px}.thumb{width:100%}.stats{flex-basis:100%;grid-template-columns:1fr;gap:18px}.foot{grid-template-columns:1fr;padding:40px 24px 22px}form{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
@@ -232,8 +233,9 @@ var SVC=[["Text to Video","Turn a script or idea into a finished video. All visu
 var FAQ=["What does a project include?","Can we work together remotely?","How soon can we start?","Do you collaborate with developers?"];
 var TQ=["[Client quote 1]","[Client quote 2]","[Client quote 3]"];
 var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
-$("#svc").innerHTML=SVC.map(function(s,i){return'<div class="row'+(i%2?" alt":"")+'"><div class="ic">'+IC[i]+'</div><div class="t"><h4>'+s[0]+'</h4><p>'+s[1]+'</p></div><div class="img">placeholder</div></div>'}).join("");
+$("#svc").innerHTML=SVC.map(function(s,i){return'<div class="row'+(i%2?" alt":"")+'"><div class="ic">'+IC[i]+'</div><div class="t"><h4>'+s[0]+'</h4><p>'+s[1]+'</p></div>'+(i==0?'<video class="img vid" src="assets/text-to-video.mp4" autoplay muted loop playsinline disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true" preload="auto"></video>':'<div class="img">placeholder</div>')+'</div>'}).join("");
 $$("#svc .row").forEach(function(r,i){if(i%2){r.insertBefore($(".img",r),r.firstChild);r.appendChild($(".ic",r))}});
+$$("video.vid").forEach(function(v){v.muted=true;v.controls=false;var p=function(){var r=v.play();if(r&&r.catch)r.catch(function(){})};p();v.addEventListener("pause",function(){if(!v.ended)p()});v.addEventListener("click",function(e){e.preventDefault()})});
 $("#faqs").innerHTML=FAQ.map(function(q){return'<details><summary>'+q+'</summary><p class="todo">[Add your answer]</p></details>'}).join("");
 var ti=0;function showT(){$("#tq").textContent=TQ[ti];$("#cnt").textContent="0"+(ti+1)+" / 0"+TQ.length}
 $("#prev").onclick=function(){ti=(ti+TQ.length-1)%TQ.length;showT()};$("#next").onclick=function(){ti=(ti+1)%TQ.length;showT()};
