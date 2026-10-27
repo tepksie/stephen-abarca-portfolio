@@ -95,7 +95,7 @@ nav ul a:hover{color:var(--text)}
 .v1 .clip{padding:0;background:var(--c);display:flex;flex-direction:column}
 .v1 .clip .nm{color:#101218;font-weight:600;padding:3px 6px;overflow:hidden;text-overflow:ellipsis}
 .v1 .clip .fs{flex:1;display:flex;gap:1px;padding:0 2px 2px;overflow:hidden;min-height:0}
-.v1 .clip .fs i{flex:none;height:100%;aspect-ratio:9/16;border-radius:2px;background-image:url(media/edit-thumbs.jpg);background-repeat:no-repeat}
+.v1 .clip .fs i{flex:none;height:100%;aspect-ratio:9/16;border-radius:2px;background-image:var(--thumbs,none);background-repeat:no-repeat}
 .a1 canvas{position:absolute;inset:6px 0;width:100%;height:calc(100% - 12px);display:block}
 .ph-line{position:absolute;top:0;bottom:0;left:52px;width:2px;background:var(--playhead);pointer-events:none;z-index:3;box-shadow:0 0 12px color-mix(in srgb,var(--playhead) 60%,transparent)}
 .ph-line::before{content:"";position:absolute;top:0;left:-6px;border:7px solid transparent;border-top:10px solid var(--playhead)}
@@ -156,7 +156,8 @@ nav ul a:hover{color:var(--text)}
 .shot:hover video{transform:scale(1.06);filter:saturate(1.1)}
 .shot.tall{background:#000}.shot.tall img,.shot.tall video{object-fit:contain}
 .shot:hover img{transform:scale(1.06);filter:saturate(1.1)}
-.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;background:linear-gradient(transparent,rgba(8,9,12,.88));font-size:13px;font-weight:600;display:flex;justify-content:space-between;gap:8px;color:#f1efe9}
+.shot{isolation:isolate}.shot video{position:relative;z-index:0}
+.shot figcaption{z-index:2;transform:translateZ(0);position:absolute;left:0;right:0;bottom:0;padding:22px 12px 9px;background:linear-gradient(transparent,rgba(8,9,12,.88));font-size:13px;font-weight:600;display:flex;justify-content:space-between;gap:8px;color:#f1efe9}
 .shot figcaption span{font-family:var(--mono);font-weight:400;font-size:10px;color:#b9bdc9;align-self:center}
 @media(max-width:640px){.shot{width:230px}}
 
@@ -261,7 +262,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
       <div class="suite" id="suite">
         <div class="mon">
           <div class="hd mono"><span>Program</span><span>9:16 · 1080×1920</span></div>
-          <div class="scr"><video id="pv" src="media/edit-9x16.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
+          <div class="scr"><video id="pv" data-m="==ANw1mL2EDe50CdpRWZvEWakVWb" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
           <div class="mon-ft"><span class="tcm" id="ptc">00:00:00:00</span><button id="pp" type="button">Pause</button><button id="snd" type="button">Sound on</button></div>
         </div>
         <div class="tl" id="tl">
@@ -303,13 +304,13 @@ footer .in{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
 
   <section class="g" id="about">
     <div class="in about">
-      <div class="pic"><img id="pimg" src="media/photo.jpg" alt="Portrait of Stephen Abarca"><span class="tag">CAM A · Stephen</span></div>
+      <div class="pic"><img id="pimg" data-m="nBnau8GdvhGcvEWakVWb" alt="Portrait of Stephen Abarca"><span class="tag">CAM A · Stephen</span></div>
       <div class="copy">
         <p class="mono">About and process</p>
         <h2 style="margin-top:14px">I love working with founders and small teams</h2>
         <p class="big">Bring the half-formed idea. We shape it together into edits, AI visuals and motion graphics made to be watched.</p>
         <a class="btn ghost" href="#contact">Start a project ↗&#xFE0E;</a>
-        <div class="tools"><img src="media/tools-logos.webp" alt="Editing and AI tools Stephen uses"></div>
+        <div class="tools"><img data-m="==AciV2duM3bn9GbtMHbv9GdvEWakVWb" alt="Editing and AI tools Stephen uses"></div>
       </div>
     </div>
   </section>
@@ -368,22 +369,30 @@ footer .in{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
 <script>
 (function(){
 var $=function(s,r){return(r||document).querySelector(s)};
+/* media guard: paths are stored base64-reversed and served to elements as blob: URLs */
+var _d=function(x){return atob(x.split("").reverse().join(""))},_bc={};
+function blobURL(k){if(!_bc[k]){var u=_d(k);_bc[k]=fetch(u).then(function(r){if(!r.ok)throw 0;return r.blob()}).then(function(b){return URL.createObjectURL(b)}).catch(function(){return u})}return _bc[k]}
+function loadMedia(root){(root||document).querySelectorAll("[data-m]").forEach(function(el){var k=el.getAttribute("data-m"),p=el.getAttribute("data-p");el.removeAttribute("data-m");el.removeAttribute("data-p");
+  if(p)blobURL(p).then(function(u){el.poster=u});
+  blobURL(k).then(function(u){el.src=u;if(el.tagName==="VIDEO"){el.muted=true;var r=el.play();if(r&&r.catch)r.catch(function(){})}})})}
+blobURL("nBnauMnYtVHa01CdpRWZvEWakVWb").then(function(u){document.documentElement.style.setProperty("--thumbs",'url("'+u+'")')});
 var RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
 var COL=["var(--clip-teal)","var(--clip-iris)","var(--playhead)","var(--clip-rose)"];
-var SVC=[["Text to Video","Turn a script or idea into a finished video. All visuals, B-roll, voiceover, captions and motion graphics, edited to fit your brand.","text-to-video"],["AI Avatar to Video","A realistic AI presenter delivers your script on screen. Good for explainers, training videos and ads, with no filming needed. Includes voice, captions and cutaways.","ai-avatar"],["UGC videos","Authentic, creator-style videos made for ads and social. Hook-first scripting, product B-roll and voiceover tailored for TikTok, Reels and Shorts.","ugc"],["Faceless reels","Short-form videos with no camera-on talent. Story and AI B-roll, voiceover, text animation and sound design, built for steady posting.","faceless-reels"]];
-var WORK=[["Long-form YouTube","longform-yt","16:9"],["AI explainer video","ai-explainer","16:9"],["IG reel","ig-reel","9:16"],["Intro video","intro-broker","16:9"],["360 tour","360-salad-house","16:9"],["Ad","ad-salad-house","16:9"],["Live interview","live-qa","16:9"],["AI viral trend","ai-viral-trend","16:9"]];
+var SVC=[["Text to Video","Turn a script or idea into a finished video. All visuals, B-roll, voiceover, captions and motion graphics, edited to fit your brand.","=QDct5yblRWa21yb01Cd4VGdvEWakVWb"],["AI Avatar to Video","A realistic AI presenter delivers your script on screen. Good for explainers, training videos and ads, with no filming needed. Includes voice, captions and cutaways.","==ANw1mLyFGdhZXYtkWYvEWakVWb"],["UGC videos","Authentic, creator-style videos made for ads and social. Hook-first scripting, product B-roll and voiceover tailored for TikTok, Reels and Shorts.","==ANw1mLjdWdvEWakVWb"],["Faceless reels","Short-form videos with no camera-on talent. Story and AI B-roll, voiceover, text animation and sound design, built for steady posting.","0AXbuMHblVmctM3clxWZjFmZvEWakVWb"]];
+var WORK=[["Long-form YouTube","=QDct5Cd51Sby9mZn52bs1ydvEWakVWb","nBnauQXet0mcvZ2Zu9GbvEWakVWb","16:9"],["AI explainer video","0AXbuIXZulWYsBHel1Sah1ydvEWakVWb","==wZwpmLyVmbpFGbwhXZtkWYvEWakVWb","16:9"],["IG reel","==ANw1mLsVWZy1yZp1ydvEWakVWb","=cGcq5CblVmctcWavEWakVWb","9:16"],["Intro video","0AXbuIXZr9mci1ybyRnbp1ydvEWakVWb","==wZwpmLyV2avJnYt8mc05WavEWakVWb","16:9"],["360 tour","0AXbuU2c19GatQWYsF2ctAjNz0ydvEWakVWb","==wZwpmLlNXdvhWLkFGbhNXLwYzMvEWakVWb","16:9"],["Ad","=QDct5SZzV3bo1CZhxWYz1CZh1ydvEWakVWb","nBnauU2c19GatQWYsF2ctQWYvEWakVWb","16:9"],["Live interview","==ANw1mLhFXLlZXas1ydvEWakVWb","=cGcq5SYx1SZ2lGbvEWakVWb","16:9"],["AI viral trend","=QDct5CZuVmc01CbhJXa21Sah1ydvEWakVWb","nBnauQmblJHdtwWYylmdtkWYvEWakVWb","16:9"]];
 var TQ=[["Stephen did a really good job with our Datarahshop website. It looks clean, runs smoothly, and makes our clothes and other products look so much better. He was easy to work with, understood what we wanted, and made the whole process hassle-free.","Tanch and Sarah","Shop Owner"],["Stephen has been a great help with my posting schedule and video edits, giving me more time to focus on coaching. He’s reliable, easy to work with, and always delivers on time. Really glad I can count on him!","Julian Cañita","Facebook Ads Coach"],["I’ve worked with Stephen on videos for different clients, and he’s been great to work with. He quickly understands the style each client is looking for and always delivers on time.","Mhyla Uy","Content Multiplied"],["Stephen does a great job editing my podcast. The audio is clean, the cuts are smooth, and the social media clips are ready to go. He makes the whole process easy and delivers episodes that are ready to publish.","Erik Van Horn","Franchise Secrets Podcast"],["Working with Stephen has been a great experience. He turned our raw footage into podcasts, short videos, and reels that look polished and engaging. He’s creative, quick with revisions, and really easy to work with.","Bennett Maxwell","FranchiseKi"]];
 var FAQ=[["What does a project include?","Every project covers the full edit: cutting, pacing, B-roll, captions, motion graphics and sound. I can add AI visuals, avatars or a voiceover if you need them. You get final files ready to post in the formats you need, plus a feedback round to fine-tune."],["Can we work together remotely?","Yes, all my work is remote. You share your script, footage or idea through Google Drive or a similar link, and we keep in touch over email or chat. You review drafts online and leave notes, with no meetings needed unless you want one."],["How soon can we start?","Usually within a few days of getting your brief. Short-form videos and reels move fast, and longer or AI-heavy projects take a bit more time. Send your idea and I’ll reply with a timeline that fits your launch date."],["Do you work with my raw footage?","Yes. Send clips, screen recordings or phone footage and I’ll cut, color and caption them. No footage? I can build the video from AI visuals and B-roll."]];
 var VATTR='autoplay muted loop playsinline disablepictureinpicture preload="auto" tabindex="-1" aria-hidden="true"';
 
 
 /* services cards */
-$("#hrail").innerHTML=SVC.map(function(s,i){return'<article class="card" style="--c:'+COL[i]+'"><div class="t"><div class="mono"><b>V1 · clip '+(i+1)+'</b><span>9:16 + 16:9</span></div><h3>'+s[0]+'</h3><p>'+s[1]+'</p><a class="btn ghost" href="#contact">Inquire ↗&#xFE0E;</a></div><div class="frame"><video '+VATTR+' src="media/'+s[2]+'.mp4"></video></div></article>'}).join("");
+$("#hrail").innerHTML=SVC.map(function(s,i){return'<article class="card" style="--c:'+COL[i]+'"><div class="t"><div class="mono"><b>V1 · clip '+(i+1)+'</b><span>9:16 + 16:9</span></div><h3>'+s[0]+'</h3><p>'+s[1]+'</p><a class="btn ghost" href="#contact">Inquire ↗&#xFE0E;</a></div><div class="frame"><video '+VATTR+' data-m="'+s[2]+'"></video></div></article>'}).join("");
 document.querySelectorAll("video").forEach(function(v){v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){})});
 
 /* work reel, doubled for a seamless loop */
-var shots=WORK.map(function(w){return'<figure class="shot'+(w[2]==="9:16"?" tall":"")+'"><video '+VATTR+' src="media/w-'+w[1]+'.mp4" poster="media/'+w[1]+'.jpg" title="'+w[0]+' sample"></video><figcaption>'+w[0]+'<span>'+w[2]+'</span></figcaption></figure>'}).join("");
+var shots=WORK.map(function(w){return'<figure class="shot'+(w[3]==="9:16"?" tall":"")+'"><video '+VATTR+' data-m="'+w[1]+'" data-p="'+w[2]+'" title="'+w[0]+' sample"></video><figcaption>'+w[0]+'<span>'+w[3]+'</span></figcaption></figure>'}).join("");
 $("#reelA").innerHTML=shots+shots;
+loadMedia();
 document.querySelectorAll("#reelA video").forEach(function(v){v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){});v.addEventListener("click",function(e){e.preventDefault()})});
 
 /* marquee */
