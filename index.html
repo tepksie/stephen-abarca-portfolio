@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Stephen Abarca | Freelance Video Editor</title>
+<script>try{history.scrollRestoration="manual"}catch(e){}</script>
 <meta name="description" content="Freelance video editor since 2022. Short-form, ads, AI visuals and motion graphics for independent teams.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -487,7 +488,11 @@ $("#f").addEventListener("submit",function(e){e.preventDefault();
 /* refresh always starts at the top */
 try{history.scrollRestoration="manual"}catch(e){}
 if(location.hash){history.replaceState(null,"",location.pathname+location.search)}
-scrollTo(0,0);
+function toTop(){document.documentElement.style.scrollBehavior="auto";scrollTo(0,0);document.documentElement.style.scrollBehavior=""}
+toTop();
+addEventListener("load",function(){toTop();setTimeout(toTop,50)});
+addEventListener("pageshow",toTop);
+addEventListener("beforeunload",toTop);
 
 /* media guard: block right-click, drag, save/view-source shortcuts */
 var _form=function(t){return t&&t.closest&&t.closest("input,textarea,select,[contenteditable]")};
