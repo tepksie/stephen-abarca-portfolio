@@ -5,10 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Stephen Abarca | Freelance Video Editor</title>
 <meta name="description" content="Freelance video editor since 2022. Short-form, ads, AI visuals and motion graphics for independent teams.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800;900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="preload" href="media/fonts/big-shoulders-display-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="media/fonts/big-shoulders-display-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="media/fonts/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <style>
+@font-face{font-family:"Big Shoulders Display";font-weight:800;font-style:normal;font-display:swap;src:url(media/fonts/big-shoulders-display-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Big Shoulders Display";font-weight:900;font-style:normal;font-display:swap;src:url(media/fonts/big-shoulders-display-latin-900-normal.woff2) format("woff2")}
+@font-face{font-family:"Big Shoulders Display";font-weight:500;font-style:normal;font-display:swap;src:url(media/fonts/big-shoulders-display-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-weight:400;font-style:normal;font-display:swap;src:url(media/fonts/instrument-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-weight:500;font-style:normal;font-display:swap;src:url(media/fonts/instrument-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Instrument Sans";font-weight:600;font-style:normal;font-display:swap;src:url(media/fonts/instrument-sans-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:400;font-style:normal;font-display:swap;src:url(media/fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:600;font-style:normal;font-display:swap;src:url(media/fonts/jetbrains-mono-latin-600-normal.woff2) format("woff2")}
 /* Layout: the page is an editing timeline. Scroll = playhead, sections = clips on tracks, nav = timecode. */
 :root{
   --suite:#12141a;      /* editing-suite graphite, blue bias */
@@ -262,7 +271,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
       <div class="suite" id="suite">
         <div class="mon">
           <div class="hd mono"><span>Program</span><span>9:16 · 1080×1920</span></div>
-          <div class="scr"><video id="pv" data-m="==ANw1mL2EDe50CdpRWZvEWakVWb" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
+          <div class="scr"><video id="pv" data-p="nBnauIXZ0N3bw1CdpRWZvEWakVWb" data-m="==ANw1mL2EDe50CdpRWZvEWakVWb" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
           <div class="mon-ft"><span class="tcm" id="ptc">00:00:00:00</span><button id="pp" type="button">Pause</button><button id="snd" type="button">Sound on</button></div>
         </div>
         <div class="tl" id="tl">
@@ -380,7 +389,7 @@ function fetchMedia(el){var k=el.getAttribute("data-m"),p=el.getAttribute("data-
   if(p)blobURL(p).then(function(u){el.poster=u});
   blobURL(k).then(function(u){el.src=u;if(el.tagName==="VIDEO")playIfVisible(el)})}
 var _loadIO=_io&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){_loadIO.unobserve(e.target);fetchMedia(e.target)}})},{rootMargin:"400px 400px"});
-function loadMedia(root){(root||document).querySelectorAll("[data-m]").forEach(function(el){
+function loadMedia(root){(root||document).querySelectorAll("[data-m]").forEach(function(el){if(el.closest("#reelA"))return;
   if(el.tagName==="VIDEO"){if(_playIO)_playIO.observe(el);else el._vis=true}
   if(_loadIO)_loadIO.observe(el);else fetchMedia(el)})}
 blobURL("nBnauMnYtVHa01CdpRWZvEWakVWb").then(function(u){document.documentElement.style.setProperty("--thumbs",'url("'+u+'")')});
@@ -400,6 +409,20 @@ $("#hrail").innerHTML=SVC.map(function(s,i){return'<article class="card" style="
 var shots=WORK.map(function(w){return'<figure class="shot'+(w[3]==="9:16"?" tall":"")+'"><video '+VATTR+' data-m="'+w[1]+'" data-p="'+w[2]+'" title="'+w[0]+' sample"></video><figcaption>'+w[0]+'<span>'+w[3]+'</span></figcaption></figure>'}).join("");
 $("#reelA").innerHTML=shots+shots;
 loadMedia();
+(function(){var vids=[].slice.call(document.querySelectorAll("#reelA video")),started=false;
+  vids.forEach(function(v){var p=v.getAttribute("data-p");if(p)blobURL(p).then(function(u){v.poster=u})});
+  function start(){if(started)return;started=true;var keys=[];vids.forEach(function(v){var k=v.getAttribute("data-m");if(keys.indexOf(k)<0)keys.push(k)});
+    (function next(i){if(i>=keys.length)return;blobURL(keys[i]).then(function(){next(i+1)})})(0);
+    vids.forEach(function(v){var k=v.getAttribute("data-m");v.removeAttribute("data-m");v.removeAttribute("data-p");blobURL(k).then(function(u){v.src=u;tick()})})}
+  var strip=$(".strip"),on=false;
+  function tick(){if(!on)return;var W=innerWidth;vids.forEach(function(v){var r=v.getBoundingClientRect(),vis=r.right>-40&&r.left<W+40;
+    if(vis&&v.src&&v.paused){v.muted=true;var q=v.play();if(q&&q.catch)q.catch(function(){})}else if(!vis&&!v.paused)v.pause()})}
+  setInterval(tick,300);
+  if(_io){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)start()})},{rootMargin:"1600px 0px"}).observe(strip);
+    new IntersectionObserver(function(es){on=es[0].isIntersecting;if(!on)vids.forEach(function(v){if(!v.paused)v.pause()});else tick()},{threshold:0}).observe(strip)}
+  else{on=true;start()}
+  addEventListener("load",function(){setTimeout(start,1500)});
+})();
 document.querySelectorAll("#reelA video").forEach(function(v){v.addEventListener("click",function(e){e.preventDefault()})});
 
 /* marquee */
