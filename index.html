@@ -150,7 +150,7 @@ nav ul a:hover{color:var(--text)}
 .strip::before,.strip::after{content:"";position:absolute;left:0;right:0;height:10px;background:repeating-linear-gradient(90deg,transparent 0 10px,var(--line) 10px 22px);opacity:.9}
 .strip::before{top:2px}.strip::after{bottom:2px}
 .reel{display:flex;width:max-content;will-change:transform;animation:drift 60s linear infinite}
-.strip:hover .reel{animation-play-state:paused}
+@media(hover:hover){.strip:hover .reel{animation-play-state:paused}}
 .shot{width:300px;flex:none;margin-right:14px;position:relative;border-radius:6px;overflow:hidden;aspect-ratio:16/9;background:var(--panel);margin:0}
 .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s,filter .6s;filter:saturate(.85)}
 .shot video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s,filter .6s;filter:saturate(.85)}
@@ -285,7 +285,7 @@ footer .in{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
     </div>
   </section>
 
-  <div class="marq" aria-hidden="true"><div class="belt" id="belt"></div></div>
+  <div class="marq" aria-hidden="true"><div class="belt" id="belt"><span>Edits <i></i> B-roll <i></i> Motion graphics <i></i> AI avatars <i></i> Captions <i></i> Sound design <i></i> UGC ads <i></i></span><span>Edits <i></i> B-roll <i></i> Motion graphics <i></i> AI avatars <i></i> Captions <i></i> Sound design <i></i> UGC ads <i></i></span></div></div>
 
   <section id="services">
     <div class="g"><div class="in svc-head">
@@ -400,13 +400,21 @@ $("#hrail").innerHTML=SVC.map(function(s,i){return'<article class="card" style="
 /* work reel, doubled for a seamless loop */
 var shots=WORK.map(function(w){return'<figure class="shot'+(w[3]==="9:16"?" tall":"")+'"><video '+VATTR+' data-m="'+w[1]+'" data-p="'+w[2]+'" title="'+w[0]+' sample"></video><figcaption>'+w[0]+'<span>'+w[3]+'</span></figcaption></figure>'}).join("");
 $("#reelA").innerHTML=shots+shots;
+/* work strip previews load right away so tiles are never blank */
+document.querySelectorAll("#reelA video[data-p]").forEach(function(v){var p=v.getAttribute("data-p");blobURL(p).then(function(u){v.poster=u})});
 loadMedia();
 document.querySelectorAll("#reelA video").forEach(function(v){v.addEventListener("click",function(e){e.preventDefault()})});
 
 /* marquee */
-var words=["Edits","B-roll","Motion graphics","AI avatars","Captions","Sound design","UGC ads"];
-var unit='<span>'+words.map(function(w){return w+' <i></i>'}).join(" ")+'</span>';
-$("#belt").innerHTML=unit+unit;
+/* belt words are in the HTML so it has its width from the first frame.
+   iPhone Safari fixes a running translateX(-50%) to the width at start, so restart both loops whenever their width changes */
+function kick(el){var cs=getComputedStyle(el),m=/matrix\(([^)]+)\)/.exec(cs.transform),x=m?-parseFloat(m[1].split(",")[4]):0,half=(el._w||el.scrollWidth)/2,d=parseFloat(cs.animationDuration)||0,f=half>0?Math.min(.999,Math.max(0,x/half)):0;
+  el.style.animation="none";void el.offsetWidth;el.style.animation="";el.style.animationDelay=(-f*d)+"s"}
+var loops=[$("#belt"),$("#reelA")];
+loops.forEach(function(el){el._w=el.scrollWidth});kick($("#reelA"));
+function rekick(){loops.forEach(function(el){var w=el.scrollWidth;if(w!==el._w){kick(el);el._w=w}})}
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(rekick);
+addEventListener("load",rekick);addEventListener("resize",rekick);
 
 /* faq */
 $("#faqs").innerHTML=FAQ.map(function(f){return'<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'}).join("");
